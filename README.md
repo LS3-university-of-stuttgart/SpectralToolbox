@@ -1,8 +1,9 @@
-==========================
+
 SpectralToolbox
 ==========================
 
 A FFT-based kriging package
+
 Version 1.5 (01 august 2007 / WN)
 
 --------------------------
