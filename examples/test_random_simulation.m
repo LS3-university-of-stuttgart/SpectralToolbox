@@ -1,5 +1,5 @@
 clear all
-
+addpath('../src')
 % defining domain discretization
 s.n_pts        = [100 100];
 s.d_pts        = [1   1  ];

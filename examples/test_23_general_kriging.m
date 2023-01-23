@@ -1,7 +1,7 @@
 clear all
 clc
 clf
-
+addpath('../src')
 % setus up input data for GENERAL_KRIGING and runs a small test problem
 % (should take a few seconds on a machine purchased in 2007)
 
