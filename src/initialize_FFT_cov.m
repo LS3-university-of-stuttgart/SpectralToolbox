@@ -35,7 +35,7 @@ s = check_structure_s(s);
 se     = find_embedding(s,options);
 
 % get the effective (anisotropic) separation distances
-h_effe = evaluate_separation(se.x_pts,s.lambda,s.micro,s.nd);
+h_effe = evaluate_separation(se.x_pts,s.lambda,s.rotation,s.micro,s.nd);
 
 % get the covariance function (embedded version)
 Qe     = evaluate_covariance(s,h_effe);

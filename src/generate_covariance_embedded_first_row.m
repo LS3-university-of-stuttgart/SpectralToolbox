@@ -8,5 +8,5 @@ for i=1:s.nd
   dx_pts{i} = e.x_pts{i}-e.x_pts{i}(1);
 end
 
-h_eff   = evaluate_separation(dx_pts,s.lambda,s.micro,s.nd);
+h_eff   = evaluate_separation(dx_pts,s.lambda,s.rotation,s.micro,s.nd);
 Qse1    = evaluate_covariance(s,h_eff);

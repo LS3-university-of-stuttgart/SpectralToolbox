@@ -35,7 +35,11 @@ s.d_tot   = s.d_pts .* s.n_pts;
 % defining domain coordinate vectors
 s.x_vec   = cell(s.nd,1);
 for i=1:s.nd
-  s.x_vec{i}  = (0:s.n_pts(i)-1)*s.d_pts(i);
+  if isfield(s,'n_add') % for the case of embedding
+    s.x_vec{i}  = [(0:floor(s.n_pts(i)/2)), -ceil(s.n_pts(i)/2)+1:-1] *s.d_pts(i);
+  else
+    s.x_vec{i}  = (0:s.n_pts(i)-1)*s.d_pts(i);
+  end
 end
 for i=s.nd+1:3
   s.x_vec{i}  = [];

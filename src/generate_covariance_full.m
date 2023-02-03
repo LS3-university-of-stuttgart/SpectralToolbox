@@ -12,5 +12,5 @@ for i=1:s.nd
 end
 
 % evaluate separation distances and covariance matrix
-h_eff = evaluate_separation(dx_pts,s.lambda,s.micro,s.nd);
+h_eff = evaluate_separation(dx_pts,s.lambda,s.rotation,s.micro,s.nd);
 Qyy   = evaluate_covariance(s,h_eff);

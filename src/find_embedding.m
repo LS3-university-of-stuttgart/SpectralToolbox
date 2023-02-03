@@ -41,9 +41,11 @@ e.x_pts        = cell(s.nd,1);
 e              = ndgrid_setup(e);
 
 % ...periodicity of distances
-for i=1:s.nd
-  e.x_pts{i}  = min(e.x_pts{i},e.d_tot(i)-e.x_pts{i});
-end
+% for i=1:s.nd
+%   e.x_pts{i}   = min(e.x_pts{i},e.d_tot(i)-e.x_pts{i});
+% end
+% e.x_pts{1}((e.n_pts(1)/2+1):end,:) = -e.x_pts{1}((e.n_pts(1)/2+1):end,:);
+% e.x_pts{2}(:,(e.n_pts(2)/2+1):end) = -e.x_pts{2}(:,(e.n_pts(2)/2+1):end);
 
 % % smoothing the transition at the point of reflection using a microscale smoothing approach
 % for i=1:s.nd

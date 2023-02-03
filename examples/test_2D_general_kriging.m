@@ -1,12 +1,15 @@
 clear all
-addpath('../src')
+
 % setus up input data for GENERAL_KRIGING and runs a small test problem
 % (should take a few seconds on a machine purchased in 2007)
 
 % definition of prior covariance
-s.model      = 'matern';                           % geostatistical model for unknowns
+% s.model      = 'matern';                           % geostatistical model for unknowns
+s.model      = 'gaussian';                         % geostatistical model for unknowns
+% s.model      = 'exponential';                      % geostatistical model for unknowns
 s.variance   = 1;                                  % geostatistical parameter for exponential model
-s.lambda     = [20  20];                           % geostatistical parameter for exponential model
+s.lambda     = [20 20];                            % geostatistical parameter for exponential model
+s.rotation   = 0;                                  % rotation 
 s.nugget     = 0;                                  % nugget effect
 s.kappa      = 1.5;                                % shape parameter (for matern covariance only)
 s.micro      = 0.0;                                % microscale smoothing parameter (before nugget)
@@ -17,7 +20,7 @@ s.d_pts      = [1   1  ];                          % grid spacing in each direct
 s.npts       = prod(s.n_pts);                      % number of unknowns (not required unless used in problem generation)
 
 % definition of mean
-b.model      = 'uncertain';                        % uncertain, known, zero or unknown
+b.model      = 'known';                            % uncertain, known, zero or unknown
 b.n          = 1;                                  % number of base functions
 b.beta_pri   = 0;                                  % prior mean coefficients for trend functions
 b.Qbb        = 1;                                  % uncertainty of prior mean: covariance matrix for trend coefficients
@@ -25,7 +28,7 @@ b.trend{1}   = ones(s.n_pts);                      % constant mean function
 b.trends     = b.trend{1}(:);
 
 % definition of measurement locations for measurements y
-y.gridtype   = 'irregular';                        % type of measurement grid (regular or irregular)
+y.gridtype   = 'irregular';                          % type of measurement grid (regular or irregular)
 y.npts       = 25;                                 % number of observations (not required unless used for problem generation)
 [zzz,aux]    = sort(randn(s.npts,1));              % randomized choice of locations
 y.indices    = aux(1:y.npts);                      % measurement indices in field of unknowns (required for irregular grids)

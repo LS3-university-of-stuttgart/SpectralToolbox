@@ -1,4 +1,4 @@
-function [Y,beta,FFTQe] = generate_randomfield(s,b,options,FFTQe,se)
+function [Y,beta,FFTQe] = generate_randomfield(s,b,options,white_noise,FFTQe)
 
 
 % GENERATE_RANDOMFIELD generates realizations of random space variables.
@@ -98,11 +98,10 @@ function [Y,beta,FFTQe] = generate_randomfield(s,b,options,FFTQe,se)
 %    number    = {3},
 %    pages     = {1051, doi:10.1029/2001WR001146}
 % }
-
 % checking input parameter
 if nargin == 0
   error('GENERATE_RANDOMFIELD:missing_input','input parameters (model and grid structures) are missing.')
-elseif nargin > 4
+elseif nargin > 5
   error('GENERATE_RANDOMFIELD:too_much_input','only two input parameters (model and grid structures) required.')
 end
 
@@ -112,11 +111,13 @@ s = ndgrid_setup(s);
 b = check_structure_b(b);
 
 % recycling FFTQe, if provided
-if nargin ~=4 || isempty(FFTQe)
+
+if nargin ~=5 || isempty(FFTQe)
   [FFTQe,se] = initialize_FFT_cov(s,options);
 else
   se         = find_embedding(s,options);
 end
+
 
 % computing eigenvalues of decompositions (due to sqrt)
 s.sqrtQlambda  = sqrt(FFTQe/se.npts);
@@ -126,11 +127,11 @@ while 1==1
 
   % computing embedded random field
   if s.flag_kit == false    % dietrich and newsam method
-    epsilon        = complex(randn(se.n_pts), randn(se.n_pts));
+    epsilon        = complex(white_noise.a,white_noise.b);
     % epsilon(1)     = 0; % use only for zero mean of periodic fields, do not use for finite domains!
     Ye             = real(ifftn(epsilon.*s.sqrtQlambda))*se.npts;
   else                    % kitanidis method
-    epsilon        = exp(1i*angle(fftn(randn(se.n_pts))));
+    epsilon        = exp(1i*angle(fftn(white_noise.a)));
     epsilon(1)     = 0;   % this MUST be done because in the Kitanidis-type generation, abs(epsilon(1)) would otherwise always be unity, adding a bias to the mean!
     Ye             = real(ifftn(epsilon.*s.sqrtQlambda))*se.npts;
   end
@@ -161,7 +162,7 @@ while 1==1
     u              = ones(s.n_pts)/s.npts;
     Qsu            = convolution_FFT(s.FFTQse,u);
     uQsu           = u'*Qsu;
-    Y              = Y - mean(Y(:)) + randn(1,1)*sqrt(uQsu);
+    Y              = Y - mean(Y(:)) + white_noise.c*sqrt(uQsu);
   end
 
   % adding (uncertain) mean value
@@ -173,7 +174,7 @@ while 1==1
     case 'known'
       beta  = b.beta_pri;
     case 'uncertain'
-      beta  = b.beta_pri + chol(b.Qbb)'*randn(b.n,1);
+      beta  = b.beta_pri + chol(b.Qbb)'*white_noise.d;
     case 'unknown'
       error('GENERATE_RANDOMFIELD.input.b: options UNKNOWN inly possible for kriging, but not for field generation')
     otherwise

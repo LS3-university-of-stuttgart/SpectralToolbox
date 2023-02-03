@@ -1,4 +1,3 @@
-addpath('../src')
 % setus up input data for GENERAL_KRIGING and runs a small test problem
 % (should take a few seconds on a machine purchased in 2007)
 
@@ -11,7 +10,7 @@ s.kappa      = 1.5;                                % shape parameter (for matern
 s.micro      = 0;                                  % microscale smoothing parameter (before nugget)
 
 % definition of the grid for the unknowns s
-s.n_pts      = [350 350 4];                       % number of unknowns in each direction
+s.n_pts      = [350 350 4];                        % number of unknowns in each direction
 s.d_pts      = [1   1   1];                        % grid spacing in each direction
 s.npts       = prod(s.n_pts);                      % number of unknowns (not required unless used in problem generation)
 s            = ndgrid_setup(s);                    %%just so that you have the full grid info available
@@ -69,9 +68,9 @@ b.beta_pri   = 0;                                  % prior mean coefficients for
 
 [estimate,ksi,beta,est_var,s] = general_kriging(s,b,y,options);
 
-plotter_nd(s.x_vec{1},s.x_vec{2},s.x_vec{3},Y+estimate,'conditional sim',[1 1 1],s.n_pts,[],[],0,100,0);
-hold on
-plot(s.x_pts{2}(y.indices),s.x_pts{1}(y.indices),'xk','markersize',10)
-plot(s.x_pts{2}(y.indices),s.x_pts{1}(y.indices),'ok','markersize',10)
-hold off
-caxis([-3 3])
+% plotter_nd(s.x_vec{1},s.x_vec{2},s.x_vec{3},Y+estimate,'conditional sim',[1 1 1],s.n_pts,[],[],0,100,0);
+% hold on
+% plot(s.x_pts{2}(y.indices),s.x_pts{1}(y.indices),'xk','markersize',10)
+% plot(s.x_pts{2}(y.indices),s.x_pts{1}(y.indices),'ok','markersize',10)
+% hold off
+% caxis([-3 3])
