@@ -48,12 +48,10 @@ CONTACT INFORMATION
 --------------------------
 Affiliation:
   Institute of Hydraulic Engineering (IWS)
-  Chair for Hydraulics and Modelling of Hydrosystems (LH2)
+  Stochastic Simulation and Safety Research for Hydrosystems (LS3)
   University of Stuttgart, Germany
 
 [Prof. Nowak](https://www.iws.uni-stuttgart.de/institut/team/Nowak-00003/)
-
-Please report bugs to this email address.
 
 General support and helpdesk services can not be offered.
 
