@@ -50,8 +50,8 @@ Affiliation:
   Institute of Hydraulic Engineering (IWS)
   Chair for Hydraulics and Modelling of Hydrosystems (LH2)
   University of Stuttgart, Germany
-Email:
-  wolfgang.nowak@iws.uni-stuttgart.de
+
+[Prof. Nowak](https://www.iws.uni-stuttgart.de/institut/team/Nowak-00003/)
 
 Please report bugs to this email address.
 
