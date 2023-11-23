@@ -9,18 +9,28 @@ Version 1.5 (01 august 2007 / WN)
 --------------------------
 COPYRIGHTS NOTICE
 --------------------------
-This software may be used for non-commercial purposes and for
-university-related research and education under the condition
-that the publication mentioned below will be appropriately
-acknowledged and cited in reports and other publications.
 
-Neither original nor modified versions of this code as a whole or
-in parts may be passed on to others without permission of the author.
+See [License](https://github.com/LS3-university-of-stuttgart/SpectralToolbox/blob/main/LICENSE.md)
 
-A distributable software package (e.g. under the GPL) may become
-available later on.
+Please cite the following paper when using this software.
 
-Copyright 2007 by Wolfgang Nowak and Jochen Fritz.
+```biblatex
+@article{fritz2009,
+	title        = {Application of FFT-based Algorithms for Large-Scale Universal Kriging Problems},
+	author       = {Fritz, J. and Neuweiler, I. and Nowak, W.},
+	year         = 2009,
+	month        = {Jul},
+	day          = {01},
+	journal      = {Mathematical Geosciences},
+	volume       = 41,
+	number       = 5,
+	pages        = {509--533},
+	doi          = {10.1007/s11004-009-9220-x},
+	issn         = {1874-8953},
+	url          = {https://doi.org/10.1007/s11004-009-9220-x},
+	abstract     = {Looking at kriging problems with huge numbers of estimation points and measurements, computational power and storage capacities often pose heavy limitations to the maximum manageable problem size. In the past, a list of FFT-based algorithms for matrix operations have been developed. They allow extremely fast convolution, superposition and inversion of covariance matrices under certain conditions. If adequately used in kriging problems, these algorithms lead to drastic speedup and reductions in storage requirements without changing the kriging estimator. However, they require second-order stationary covariance functions, estimation on regular grids, and the measurements must also form a regular grid. In this study, we show how to alleviate these rather heavy and many times unrealistic restrictions. Stationarity can be generalized to intrinsicity and beyond, if decomposing kriging problems into the sum of a stationary problem and a formally decoupled regression task. We use universal kriging, because it covers arbitrary forms of unknown drift and all cases of generalized covariance functions. Even more general, we use an extension to uncertain rather than unknown drift coefficients. The sampling locations may now be irregular, but must form a subset of the estimation grid. Finally, we present asymptotically exact but fast approximations to the estimation variance and point out application to conditional simulation, cokriging and sequential kriging. The drastic gain in computational and storage efficiency is demonstrated in test cases. Especially high-resolution and data-rich fields such as rainfall interpolation from radar measurements or seismic or other geophysical inversion can benefit from these improvements.}
+}
+```
 
 --------------------------
 DISCLAIMER
